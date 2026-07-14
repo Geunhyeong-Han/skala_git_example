@@ -4,13 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        li {color:blue}
+    </style>
 </head>
 <body>
-    <h1>홈페이지</h1>
+    <h1 style="color: blue;">한근형의 홈페이지</h1>
     <ul>
         <li>Front end 기술: HTML, CSS, Javascript</li>
         <li>Back end 기술: Node.js (Javascript), FastAPI (Python), Spring Boot (Java)</li>
         <li>Database: Oracle, MySQL, MongoDB(NoSQL), Postgre DB ...SQL</li>
     </ul>
+    <button id="btn">Ok</button>
+
+    <script>
+        console.log(btn);
+        btn.onclick = function() {
+            alert("버튼을 눌렀다.")
+        }
+    </script>
 </body>
 </html>
