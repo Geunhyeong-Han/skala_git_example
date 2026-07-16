@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <div>
+        ID: <input type="text" id="idInput" value="101"><br>
+        Name: <input type="text" id="nameInput" value="GRANDUER"><br>
+        Company: <input type="text" id="companyInput" value="HYUNDAI"><br>
+        Price: <input type="text" id="priceInput" value="25000"><br>
+        Year: <input type="text" id="yearInput" value="2020"><br>
+        <button id="saveBtn">Save</button>
+    </div>
+    <div>
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="carlist">
+            </tbody>
+        </table>
+        <script>
+            var carlist = [
+                {_id: 101, carname: "Sonata", company: "Hyundai", price: 25000, year: 2020},
+                {_id: 102, carname: "K5", company: "Kia", price: 27000, year: 2021},
+                {_id: 103, carname: "Model S", company: "Tesla", price: 80000, year: 2022},
+                {_id: 104, carname: "Civic", company: "Honda", price: 22000, year: 2019}
+            ];
+            var sequence = 104;
+
+            var carlistElement = document.getElementById("carlist");
+            function delFn(btn) {
+                var idValue = Number(btn.dataset["id"]);
+                var index = carlist.findIndex(function(car) {
+                    return car._id === idValue;
+                });
+                if (index !== -1) {
+                    // 해당 첨자 요소를 지운다.
+                    carlist.splice(index, 1);
+                    // 배열의 데이터 변경이 되면 다시 그리기
+                    drawList();
+                }
+            }
+            function drawList() {
+                var html = "";
+                for (var i = 0; i < carlist.length; i++) {
+                    html +=
+                    `<tr>
+                        <td>${carlist[i]['_id']}</td>
+                        <td>${carlist[i]['carname']}</td>
+                        <td>${carlist[i]['company']}</td>
+                        <td>${carlist[i]['price']}</td>
+                        <td>${carlist[i]['year']}</td>
+                        <td><button data-id="${carlist[i]['_id']}" onclick="delFn(this)">DELETE</button></td>
+                    </tr>`;
+                }
+                carlistElement.innerHTML = html;
+            }
+            drawList(); //최초 1회 수행
+
+            var saveBtn = document.getElementById("saveBtn");
+            var idInput = document.getElementById("idInput");
+            var carname = document.getElementById("nameInput");
+            var company = document.getElementById("companyInput");
+            var price = document.getElementById("priceInput");
+            var year = document.getElementById("yearInput");
+            
+            saveBtn.onclick = function(event) {
+                var enteredId = Number(idInput.value);
+                var nextId = Number.isFinite(enteredId) && enteredId > 0 ? enteredId : sequence + 1;
+                sequence = Math.max(sequence, nextId);
+
+                var newCar = {
+                    _id: nextId,
+                    carname: carname.value,
+                    company: company.value,
+                    price: Number(price.value) || 0,
+                    year: Number(year.value) || 0
+                };
+                carlist.push(newCar);
+                // 배열 수정 시 내용을 다시 출력
+                drawList();
+            }
+        </script>
+    </div>
+</body>
+</html>

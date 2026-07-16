@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TodoList 실습</title>
-
-  <!-- CSS 파일 연결 -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- JavaScript 파일 연결 -->
-  <!-- defer는 HTML을 먼저 읽은 뒤 JavaScript를 실행하게 한다. -->
-  <script src="app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로그래밍 기초-HTML</title>
+    <style>
+        li {color:red;}
+    </style>
 </head>
 <body>
-  <main class="container">
-    <h1>TodoList</h1>
-    <p class="description">오늘 해야 할 일을 입력하고 관리해 봅니다.</p>
+    <h1 style="color: blue;">SKALA에 오신 것을 환영합니다</h1>
+    <ul>
+        <li>Front end 기술: HTML, CSS, Javascript</li>
+        <li>Back end 기술: Node.js (Javascript), FastAPI (Python), Spring Boot (Java)</li>
+        <li>Database: Oracle, MySQL, MongoDB(NoSQL), Postgre DB ...SQL</li>
+    </ul>
+    <button id="btn">Ok</button>
 
-    <!-- 할 일 입력 폼 -->
-    <form id="todoForm" class="todo-form">
-      <input
-        type="text"
-        id="todoInput"
-        placeholder="할 일을 입력하세요"
-        autocomplete="off"
-      >
-      <button type="submit">추가</button>
+    <script>
+        console.log(btn);
+        btn.onclick = function() {
+            alert("버튼을 눌렀다.")
+        }
+    </script>
+    <h2>HTML Forms</h2>
+    <form action="signUpResult.php" method="get">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
     </form>
-
-    <!-- 할 일 목록이 출력될 영역 -->
-    <ul id="todoList" class="todo-list"></ul>
-  </main>
+        <fieldset>
+            <legend>자기소개</legend>
+            <p>
+                <label for="intro">나를 표현하는 한 줄 소개 또는 가입 인사:</label><br>
+                <textarea id="intro" name="intro" rows="5" cols="50" placeholder="여기에 내용을 입력하세요 (최대 200자)"></textarea>
+            </p>
+        </fieldset>
+        <br>
+        <input type="submit" value="동의하고 회원가입">
+        <input type="reset" value="다시 작성">
+    </form>
+    <form>
+        <fieldset>
+            <legend>계정 정보</legend>
+            <p>
+                <label for="userId">아이디: </label>
+                <input type="text" id="userId" name="userId" minlength="4" maxlength="15" required placeholder="4~15자 영문/숫자">
+                <small>(필수)</small>
+            </p>
 </body>
 </html>
